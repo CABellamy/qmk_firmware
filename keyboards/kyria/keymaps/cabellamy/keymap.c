@@ -39,15 +39,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  * | LShift |   Z  |   X  |   C  |   V  |   B  | CCCV |LShift|  |LShift|LShift|   N  |   M  | ,  < | . >  | /  ? |  Mins  |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- *                        | Mute | CTRL | Space| Enter| Esc  |  | Enter| Space| Tab  | Bksp | GUI  |
- *                        |      |      | Lower| Alt  | Raise|  | Lower| Raise| Enter|      |      |
+ *                        | Mute | CTRL | Enter| Space| Esc  |  | Enter| Space| Tab  | Bksp | GUI  |
+ *                        |      |      | Alt  | Lower| Raise|  | Lower| Raise| Enter|      |      |
  *                        `----------------------------------'  `----------------------------------'
  */
     [_QWERTY] = LAYOUT(
       LT(_RAISE, KC_ESC),      KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,                                            KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
       KC_TAB,   KC_A,   KC_S,  KC_D,   KC_F,   KC_G,                                                           KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_ENT,
       KC_LSFT,                 KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,   KC_CCCV,  KC_LSFT,     KC_RSFT, KC_RSFT, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_MINS,
-          KC_MUTE, KC_LCTRL, LT(_LOWER, KC_SPC), MT(MOD_LALT, KC_ENT), LT(_RAISE, KC_ESC),    LT(_LOWER, KC_ENT), LT(_RAISE, KC_SPC), MT(KC_TAB, KC_ENT),  KC_BSPC,  KC_RGUI
+          KC_MUTE, KC_LCTRL, MT(MOD_LALT, KC_ENT), LT(_LOWER, KC_SPC), LT(_RAISE, KC_ESC),    LT(_LOWER, KC_ENT), LT(_RAISE, KC_SPC), MT(KC_TAB, KC_ENT),  KC_BSPC,  KC_RGUI
     ),
 /*
  * Lower Layer: Symbols
@@ -135,7 +135,6 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
 }
 
-
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case KC_CCCV:  // One key copy/paste
@@ -190,7 +189,7 @@ static void render_status(void) {
     oled_write_P(PSTR("Layer: "), false);
     switch (get_highest_layer(layer_state)) {
         case _QWERTY:
-            oled_write_P(PSTR("Default\n"), false);
+            oled_write_P(PSTR("QWERTY\n"), false);
             break;
         case _LOWER:
             oled_write_P(PSTR("Lower\n"), false);
