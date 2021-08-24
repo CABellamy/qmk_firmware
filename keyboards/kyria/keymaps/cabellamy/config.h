@@ -26,6 +26,7 @@
   #define RGBLIGHT_SAT_STEP 8
   #define RGBLIGHT_VAL_STEP 8
   #define RGBLIGHT_LIMIT_VAL 150
+  #define RGBLIGHT_LAYERS 4
 #endif
 
 // If you are using an Elite C rev3 on the slave side, uncomment the lines below:
@@ -35,3 +36,9 @@
 // Encoder stuff
 #define ENCODER_RESOLUTION 2
 #define ENCODER_DIRECTION_FLIP
+
+/* oled custom font */
+// #define OLED_FONT_END 255
+// #define OLED_FONT_H "cabfont.c"
+
+#define RGBLIGHT_LED_MAP {0,1,2,9,8,7,4,3,5,6,19,18,17,10,11,12,15,16,14,13}
